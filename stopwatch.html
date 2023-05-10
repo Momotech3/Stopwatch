@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>StopWatch</title>
+	 <style>
+	body{
+		background-color: brown ;
+		text-align: center;
+		font-size: 25px;
+	}
+	h1{
+		font-size: 50px;
+	}
+	p{
+		color: white;
+		background-color: black;
+		border: 2px solid white;
+		width: 300px;
+		margin: 15px auto;
+	}
+ </style>
+</head>
+<body>
+
+<h1 id="h1"> 00:00:00</h1>
+<button id="start" onClick = "count()">Start</button>
+<button id="pause" onClick = "pause()">Pause</button>
+<button id="clear" onClick = "clear()">Clear</button>
+<button id="save" onClick = "save()">Save</button>
+<button id="clearpreview" onClick= "clearpreview()">clear preview</button>
+
+<p id="wp" onClick="week()"> Weekly preview</p>
+<p id= "D1" onCLick= "check1()"> press here for day1 preview </p>
+<p id= "D2" onCLick= "check2()"> press here for day2 preview </p>
+<p id= "D3" onCLick= "check3()"> press here for day3 preview </p>
+<p id= "D4" onCLick= "check4()"> press here for day4 preview </p>
+<p id= "D5" onCLick= "check5()"> press here for day5 preview </p>
+<p id= "D6" onCLick= "check6()"> press here for day6 preview </p>
+<p id= "D7" onCLick= "check7()"> press here for day7 preview </p>
+
+<script>
+	var h1= document.getElementById("h1"),
+	seconds=0,
+	minutes=0,
+	hours=0,
+	t,
+	i=1,
+	j=0,
+	D1=0,
+	D2=0,
+	D3=0,
+	D4=0,
+	D5=0,
+	D6=0,
+	D7=0,
+
+    Result= ["Day1-",[0,0,0],"Day2-",[0,0,0], "Day3-",[0,0,0], "Day4-",[0,0,0], "Day5-",[0,0,0], "Day6-",[0,0,0], "Day7-",[0,0,0]];
+
+
+	function count(){
+		t= setTimeout(timer, 1000)
+	}
+function timer(){
+	seconds = seconds+1;
+	if(seconds >= 60){
+		seconds=0;
+		minutes = minutes +1;
+		if(minutes >= 60){
+			minutes=0;
+			hours = hours +1
+		}
+	}
+	h1.textContent= `${hours}: ${minutes}: ${seconds}` ; 
+	count();
+
+}
+function pause(){
+	clearTimeout(t);
+}
+function clear(){
+	h1.textContent= "00:00:00"
+	seconds=0;
+	minutes=0;
+	hours=0;
+	clearTimeout(t);
+}
+function save(){
+	if(i>14){
+		i=3;
+		Result=["Day1-",[hours,minutes,seconds],"Day2-",[0,0,0], "Day3-",[0,0,0], "Day4-",[0,0,0], "Day5-",[0,0,0], "Day6-",[0,0,0], "Day7-",[0,0,0]];
+	}
+	else{
+		Result[i][0]= hours;
+		Result[i][1]= minutes;
+		Result[i][2]= seconds;
+		i = i +2;
+	}
+	clearTimeout(t);
+	h1.textContent= "00:00:00"
+	seconds=0; minutes=0; hours=0;
+}
+function clearpreview(){
+	h1.textContent= "00:00:00"
+	seconds=0; minutes=0; hours=0;
+	Result=["Day1-",[0,0,0],"Day2-",[0,0,0], "Day3-",[0,0,0], "Day4-",[0,0,0], "Day5-",[0,0,0], "Day6-",[0,0,0], "Day7-",[0,0,0]];
+	clearTimeout(t);
+}
+function week(){
+	if(j===0){
+		j=1;
+		document.getElementById("wp").innerHTML = Result;
+	}
+	else{
+		document.getElementById("wp").innerHTML= "week;y preview";
+		j=0;
+	}
+	
+}
+function check1(){
+	if(D1===0){
+		D1=1;
+		document.getElementById("D1").innerHTML= Result[1];
+	}
+	else{
+		D1=0;
+		document.getElementById("D1")= "press here for day1 preview";
+	}
+}
+
+function check2(){
+	if(D2===0){
+		D2=1;
+		document.getElementById("D2").innerHTML= Result[3];
+	}
+	else{
+		D2=0;
+		document.getElementById("D2")= "press here for day2 preview";
+	}
+}
+
+function check3(){
+	if(D3===0){
+		D3=1;
+		document.getElementById("D3").innerHTML= Result[5];
+	}
+	else{
+		D3=0;
+		document.getElementById("D3")= "press here for day3 preview";
+	}
+}
+
+function check4(){
+	if(D4===0){
+		D4=1;
+		document.getElementById("D4").innerHTML= Result[7];
+	}
+	else{
+		D4=0;
+		document.getElementById("D4")= "press here for day4 preview";
+	}
+}
+
+function check5(){
+	if(D5===0){
+		D5=1;
+		document.getElementById("D5").innerHTML= Result[9];
+	}
+	else{
+		D5=0;
+		document.getElementById("D5")= "press here for day5 preview";
+	}
+}
+
+function check6(){
+	if(D6===0){
+		D6=1;
+		document.getElementById("D6").innerHTML= Result[11];
+	}
+	else{
+		D6=0;
+		document.getElementById("D6")= "press here for day6 preview";
+	}
+}
+
+function check7(){
+	if(D7===0){
+		D7=1;
+		document.getElementById("D7").innerHTML= Result[13];
+	}
+	else{
+		D7=0;
+		document.getElementById("D7")= "press here for day7 preview";
+	}
+}
+</script>
+</body>
+</html>
